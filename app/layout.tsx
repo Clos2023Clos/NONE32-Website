@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import './visual-fallbacks.css';
+import './polish.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.none32.com'),
