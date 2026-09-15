@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 const nav = [
@@ -10,22 +9,16 @@ const nav = [
   ['Contact', '/en/contact']
 ] as const;
 
+const logoUrl = 'https://framerusercontent.com/images/KKpZfPwzmZcT7F6ex8PXATYkw4.png?height=450&width=800';
+
 export function SiteHeader() {
   return (
     <header className="site-header">
       <Link className="brand" href="/en/" aria-label="NONE32 home">
-        <Image
-          src="/assets/none32-logo-white.webp"
-          alt="NONE32"
-          width={196}
-          height={64}
-          priority
-        />
+        <img src={logoUrl} alt="NONE32" width="150" height="52" />
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
-        {nav.map(([label, href]) => (
-          <Link key={href} href={href}>{label}</Link>
-        ))}
+        {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
       </nav>
       <div className="header-actions">
         <Link className="button button-outline button-compact" href="/en/contact">Book your visit</Link>
