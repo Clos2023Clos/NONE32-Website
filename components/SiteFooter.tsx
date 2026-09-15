@@ -10,20 +10,20 @@ export function SiteFooter() {
         <p>We get it. We got you.</p>
       </div>
       <div className="footer-location">
-        <strong>Tijuana, Baja California, Mexico</strong>
-        <span>U.S. patients welcome</span>
+        <strong>Leona Vicario 1452, Interior 21B</strong>
+        <span>Zona Río · Tijuana, Baja California, Mexico</span>
         <a href="tel:+526648816589">+52 664 881 6589</a>
       </div>
       <div className="footer-links">
-        <Link href="/en/dental-implants-tijuana">Treatments</Link>
-        <Link href="/en/dentist-for-us-patients">For U.S. patients</Link>
-        <Link href="/en/about-none32">Our clinic</Link>
-        <Link href="/en/faq">Resources</Link>
-        <Link href="/en/contact">Contact</Link>
+        <Link href="/en/#treatments">Treatments</Link>
+        <Link href="/en/#clinic">Our clinic</Link>
+        <Link href="/en/#us-patients">For U.S. patients</Link>
+        <Link href="/en/#questions">Questions</Link>
+        <Link href="/en/#contact">Contact</Link>
       </div>
       <div className="footer-meta">
         <span>© 2026 NONE32. All rights reserved.</span>
-        <div><Link href="/en/privacy">Privacy</Link><Link href="/en/terms">Terms</Link><Link href="/sitemap.xml">Sitemap</Link></div>
+        <div><Link href="/sitemap.xml">Sitemap</Link></div>
       </div>
     </footer>
   );
