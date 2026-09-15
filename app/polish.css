@@ -1,0 +1,65 @@
+/* Homepage refinement: reduce dead space in card grids while preserving the editorial system. */
+
+.us-facts {
+  align-content: center;
+}
+
+.us-facts > div {
+  min-height: 210px !important;
+  padding: 28px 30px !important;
+  justify-content: center !important;
+}
+
+.us-facts span {
+  margin-bottom: 0 !important;
+}
+
+.us-facts strong {
+  margin-top: 13px !important;
+  font-size: 30px !important;
+  line-height: 1.02;
+}
+
+.us-facts p {
+  margin-top: 8px !important;
+  max-width: 260px;
+}
+
+.treatment-strip-links a {
+  min-height: 112px !important;
+  padding: 20px 18px !important;
+}
+
+@media (max-width: 900px) {
+  .us-facts > div {
+    min-height: 175px !important;
+    padding: 24px !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .us-facts {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .us-facts > div {
+    min-height: 148px !important;
+    padding: 18px !important;
+  }
+
+  .us-facts strong {
+    margin-top: 10px !important;
+    font-size: 21px !important;
+  }
+
+  .us-facts p {
+    margin-top: 6px !important;
+    font-size: 10px !important;
+    line-height: 1.45;
+  }
+
+  .treatment-strip-links a {
+    min-height: 96px !important;
+    padding: 16px !important;
+  }
+}
