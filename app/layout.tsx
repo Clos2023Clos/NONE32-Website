@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './visual-fallbacks.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.none32.com'),
@@ -31,15 +32,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'NONE32 | Dental Clinic in Tijuana, Mexico',
-    description:
-      'Bilingual dental care in Tijuana for local and U.S. patients.'
+    description: 'Bilingual dental care in Tijuana for local and U.S. patients.'
   }
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return <html lang="en"><body>{children}</body></html>;
 }
