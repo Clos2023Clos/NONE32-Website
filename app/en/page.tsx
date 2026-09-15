@@ -7,7 +7,7 @@ import { SiteFooter } from '@/components/SiteFooter';
 export const metadata: Metadata = {
   title: 'Dentist in Tijuana for U.S. Patients',
   description:
-    'NONE32 is a bilingual dental clinic in Tijuana, Baja California serving local and U.S. patients with dental implants, All-on-4 full-arch rehabilitation, crowns, veneers and general dentistry.',
+    'NONE32 is a bilingual dental clinic in Tijuana, Baja California serving local and U.S. patients with dental implants, full-arch rehabilitation, crowns, veneers and general dentistry.',
   alternates: {
     canonical: 'https://www.none32.com/en/',
     languages: {
@@ -17,12 +17,15 @@ export const metadata: Metadata = {
   }
 };
 
+const whatsapp =
+  'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
+
 const treatments = [
-  ['Dental implants', '/en/dental-implants-tijuana'],
-  ['All-on-4 / full arch', '/en/all-on-4-tijuana'],
-  ['Crowns', '/en/crowns-tijuana'],
-  ['Veneers', '/en/veneers-tijuana'],
-  ['General dentistry', '/en/general-dentistry-tijuana']
+  ['01', 'Dental implants', 'Single-tooth implant treatment and implant-supported restorations.'],
+  ['02', 'All-on-4 / full arch', 'Full-arch rehabilitation for patients who need a fixed implant-supported solution.'],
+  ['03', 'Crowns & restorations', 'Restorative care including zirconia and other treatment-planned crown options.'],
+  ['04', 'Veneers', 'Cosmetic treatment planned around facial proportions, tooth shape and function.'],
+  ['05', 'General dentistry', 'Exams, preventive care, fillings, extractions and comprehensive treatment planning.']
 ] as const;
 
 const clinicSchema = {
@@ -66,12 +69,19 @@ export default function EnglishHomePage() {
         <div className="hero-content">
           <p className="mini-label">NONE32 · TIJUANA, MEXICO</p>
           <h1 id="home-title">More than<br />a <em>smile.</em></h1>
-          <p className="hero-subline">Bilingual dental care for local and U.S. patients.</p>
+          <p className="hero-subline">
+            Bilingual dental care in Tijuana for local patients and patients traveling from the United States.
+          </p>
           <div className="hero-buttons">
-            <Link className="lux-button filled" href="/en/contact">Book your visit <span>→</span></Link>
-            <Link className="lux-button" href="/en/dentist-for-us-patients">For U.S. patients</Link>
+            <a className="lux-button filled" href={whatsapp}>Book your visit <span>→</span></a>
+            <Link className="lux-button" href="/en/#us-patients">For U.S. patients</Link>
           </div>
           <div className="hero-signature">WE GET IT.<br />WE GOT YOU.</div>
+        </div>
+        <div className="hero-corner-note" aria-hidden="true">
+          <span>TIJUANA</span>
+          <i>32</i>
+          <span>BAJA CALIFORNIA</span>
         </div>
       </section>
 
@@ -80,9 +90,9 @@ export default function EnglishHomePage() {
           <p className="mini-label gold">DENTISTRY WITHOUT THE TEMPLATE</p>
           <h2 id="science-title"><span>Science.</span><span>Art.</span><span className="gold-word">People.</span></h2>
           <p>
-            NONE32 is a bilingual dental clinic in Tijuana, Baja California serving local patients and patients traveling from the United States for implants, restorative dentistry, cosmetic dentistry and general dental care.
+            NONE32 is a bilingual dental clinic in Tijuana, Baja California serving local patients and patients traveling from the United States for dental implants, restorative dentistry, cosmetic dentistry and general dental care.
           </p>
-          <Link className="editorial-link" href="/en/about-none32">Discover NONE32 <span>→</span></Link>
+          <Link className="editorial-link" href="/en/#clinic">Discover the clinic <span>→</span></Link>
         </div>
         <div className="science-photo">
           <Image
@@ -93,18 +103,30 @@ export default function EnglishHomePage() {
             className="clinic-photo-main"
           />
           <div className="photo-vignette" />
-          <div className="photo-caption">A REAL SPACE.<br />A DIFFERENT POINT OF VIEW.</div>
+          <div className="photo-caption">REAL NONE32<br />ZONA RÍO · TIJUANA</div>
         </div>
       </section>
 
-      <section className="treatment-strip" aria-label="NONE32 treatments">
-        <div className="treatment-strip-title">WHAT WE DO</div>
-        <div className="treatment-strip-links">
-          {treatments.map(([label, href], index) => (
-            <Link href={href} key={href}>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <strong>{label}</strong>
-            </Link>
+      <section id="treatments" className="treatments-editorial" aria-labelledby="treatments-title">
+        <div className="treatments-lead">
+          <p className="mini-label gold">TREATMENT FOCUS</p>
+          <h2 id="treatments-title">What we do.</h2>
+          <p>Clear treatment paths instead of a wall of generic dental icons.</p>
+        </div>
+        <div className="treatment-lines">
+          {treatments.map(([number, label, description]) => (
+            <a
+              href={`https://wa.me/526648816589?text=${encodeURIComponent(`Hello NONE32, I'd like information about ${label}.`)}`}
+              className="treatment-line"
+              key={label}
+            >
+              <span className="treatment-number">{number}</span>
+              <div>
+                <strong>{label}</strong>
+                <p>{description}</p>
+              </div>
+              <b aria-hidden="true">↗</b>
+            </a>
           ))}
         </div>
       </section>
@@ -116,21 +138,21 @@ export default function EnglishHomePage() {
         <div className="triptych-center">
           <p className="mini-label gold">YOUR VISIT, REFRAMED</p>
           <h2>Your best version<br />can start here.</h2>
-          <Link className="lux-button dark" href="/en/contact">Book your visit <span>→</span></Link>
+          <a className="lux-button dark" href={whatsapp}>Book your visit <span>→</span></a>
         </div>
         <div className="triptych-panel plum-panel">
           <span>CONFIDENCE<br />LOOKS<br />DIFFERENT<br />ON EVERYONE.</span>
         </div>
       </section>
 
-      <section className="clinic-story">
+      <section id="clinic" className="clinic-story">
         <div className="clinic-story-copy">
           <p className="mini-label gold">OUR CLINIC</p>
           <h2>A space for<br />your well-being.</h2>
           <p>
-            Modern treatment planning, bilingual communication and a patient experience designed to feel clear from the first conversation through follow-up.
+            The physical clinic stays true to what you see here: clean architecture, warm materials and a modern environment in Zona Río. The website uses real NONE32 photography rather than invented clinic spaces.
           </p>
-          <Link className="editorial-link dark-link" href="/en/about-none32">See our clinic <span>→</span></Link>
+          <a className="editorial-link dark-link" href={whatsapp}>Plan your first visit <span>→</span></a>
         </div>
         <div className="clinic-story-photo">
           <Image
@@ -141,46 +163,57 @@ export default function EnglishHomePage() {
             className="clinic-photo-detail"
           />
           <div className="clinic-story-shade" />
+          <div className="clinic-photo-stamp">NONE32<br /><small>REAL CLINIC · TIJUANA</small></div>
         </div>
       </section>
 
-      <section className="us-editorial" aria-labelledby="us-title">
+      <section id="us-patients" className="us-editorial" aria-labelledby="us-title">
         <div className="us-left">
           <p className="mini-label gold">FOR U.S. PATIENTS</p>
           <h2 id="us-title">San Diego<br /><span>↘</span> Tijuana.</h2>
           <p>
             NONE32 serves patients traveling from Southern California with English and Spanish communication, clearly communicated USD pricing for U.S. patients and PPO reimbursement documentation assistance for eligible patients.
           </p>
-          <Link className="lux-button filled" href="/en/dentist-for-us-patients">Plan your visit <span>→</span></Link>
+          <a className="lux-button filled" href={whatsapp}>Plan your visit <span>→</span></a>
         </div>
         <div className="us-facts">
-          <div><span>01</span><strong>Bilingual care</strong><p>English and Spanish communication.</p></div>
-          <div><span>02</span><strong>USD pricing</strong><p>Clear pricing before treatment.</p></div>
-          <div><span>03</span><strong>PPO support</strong><p>Documentation assistance for eligible reimbursement.</p></div>
-          <div><span>04</span><strong>Zona Río</strong><p>Dental care in Tijuana, Baja California.</p></div>
+          <div><span>01</span><strong>Bilingual care</strong><p>English and Spanish communication before, during and after treatment.</p></div>
+          <div><span>02</span><strong>USD pricing</strong><p>Pricing communicated clearly for U.S. patients before treatment.</p></div>
+          <div><span>03</span><strong>PPO support</strong><p>Documentation assistance for eligible out-of-network reimbursement.</p></div>
+          <div><span>04</span><strong>Zona Río</strong><p>Leona Vicario 1452, Interior 21B, Tijuana, Baja California.</p></div>
         </div>
       </section>
 
-      <section className="answers-editorial" aria-labelledby="answers-title">
+      <section id="questions" className="answers-editorial" aria-labelledby="answers-title">
         <div className="answers-title-block">
           <p className="mini-label gold">STRAIGHT ANSWERS</p>
           <h2 id="answers-title">Useful before<br />you ever sit<br />in the chair.</h2>
         </div>
         <div className="answers-list">
-          <Link href="/en/dental-implants-tijuana"><span>How much are dental implants in Tijuana?</span><b>→</b></Link>
-          <Link href="/en/all-on-4-tijuana"><span>What is All-on-4 full-arch treatment?</span><b>→</b></Link>
-          <Link href="/en/dentist-near-san-diego"><span>How do I plan dental care from San Diego?</span><b>→</b></Link>
-          <Link href="/en/ppo-dental-reimbursement"><span>Can I use PPO benefits for dental care in Mexico?</span><b>→</b></Link>
-          <Link href="/en/faq"><span>See more patient questions</span><b>→</b></Link>
+          <a href={whatsapp}><span>How much are dental implants in Tijuana?</span><b>→</b></a>
+          <a href={whatsapp}><span>What is full-arch implant rehabilitation?</span><b>→</b></a>
+          <a href={whatsapp}><span>How do I plan dental care from San Diego?</span><b>→</b></a>
+          <a href={whatsapp}><span>How does PPO reimbursement assistance work?</span><b>→</b></a>
+          <a href={whatsapp}><span>Ask NONE32 a specific question</span><b>→</b></a>
         </div>
       </section>
 
-      <section className="closing-editorial">
+      <section className="trust-band" aria-label="NONE32 trust information">
+        <p className="mini-label gold">REAL INFORMATION. REAL PLACE.</p>
+        <div className="trust-grid">
+          <div><strong>Tijuana, B.C.</strong><span>Zona Río location</span></div>
+          <div><strong>English + Spanish</strong><span>Bilingual patient communication</span></div>
+          <div><strong>+52 664 881 6589</strong><span>Clinic phone</span></div>
+        </div>
+      </section>
+
+      <section id="contact" className="closing-editorial">
         <p className="mini-label gold">WE GET IT. WE GOT YOU.</p>
         <h2>Starts <em>here.</em></h2>
+        <p className="closing-copy">Tell us what you need. We’ll help you understand the next step before you travel.</p>
         <div className="closing-buttons">
-          <Link className="lux-button filled" href="/en/contact">Book your visit <span>→</span></Link>
-          <a className="lux-button" href="https://wa.me/526648816589">WhatsApp</a>
+          <a className="lux-button filled" href={whatsapp}>Book your visit <span>→</span></a>
+          <a className="lux-button" href="tel:+526648816589">Call NONE32</a>
         </div>
       </section>
 
