@@ -1,0 +1,1 @@
+The production header/footer must use the exact supplied NONE32 master artwork, never a recreated text rendering. Asset upload follows in the same refinement pass.
