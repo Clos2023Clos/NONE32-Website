@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 
@@ -21,11 +20,11 @@ const whatsapp =
   'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
 
 const treatments = [
-  ['01', 'Dental implants', 'Single-tooth implant treatment and implant-supported restorations.'],
-  ['02', 'All-on-4 / full arch', 'Full-arch rehabilitation for patients who need a fixed implant-supported solution.'],
-  ['03', 'Crowns & restorations', 'Restorative care including zirconia and other treatment-planned crown options.'],
-  ['04', 'Veneers', 'Cosmetic treatment planned around facial proportions, tooth shape and function.'],
-  ['05', 'General dentistry', 'Exams, preventive care, fillings, extractions and comprehensive treatment planning.']
+  ['01', 'Dental implants'],
+  ['02', 'All-on-4 / full arch'],
+  ['03', 'Crowns & restorations'],
+  ['04', 'Veneers & smile design'],
+  ['05', 'General dentistry']
 ] as const;
 
 const clinicSchema = {
@@ -55,165 +54,146 @@ export default function EnglishHomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }}
       />
 
-      <section className="editorial-hero" aria-labelledby="home-title">
+      <section id="home" className="hero" aria-labelledby="home-title">
         <SiteHeader />
         <Image
           src="/assets/hero-editorial-crop.webp"
-          alt="Editorial portrait representing the NONE32 patient experience"
+          alt="NONE32 editorial brand portrait"
           fill
           priority
           sizes="100vw"
-          className="hero-photo"
+          className="hero-image"
         />
-        <div className="hero-wash" />
-        <div className="hero-content">
-          <p className="mini-label">NONE32 · TIJUANA, MEXICO</p>
+        <div className="hero-overlay" />
+        <div className="hero-copy">
+          <p className="kicker">PREMIUM DENTAL CARE · TIJUANA</p>
           <h1 id="home-title">More than<br />a <em>smile.</em></h1>
-          <p className="hero-subline">
-            Bilingual dental care in Tijuana for local patients and patients traveling from the United States.
-          </p>
-          <div className="hero-buttons">
-            <a className="lux-button filled" href={whatsapp}>Book your visit <span>→</span></a>
-            <Link className="lux-button" href="/en/#us-patients">For U.S. patients</Link>
+          <p className="hero-points">HEALTH · AESTHETICS · CONFIDENCE.</p>
+          <p className="hero-description">Bilingual dental care for local patients and patients traveling from the United States.</p>
+          <div className="button-row">
+            <a className="button button-gold" href={whatsapp}>Book your appointment <span>→</span></a>
+            <a className="button button-clear" href="#us-patients">For U.S. patients</a>
           </div>
-          <div className="hero-signature">WE GET IT.<br />WE GOT YOU.</div>
+          <div className="signature">WE GET IT.<br />WE GOT YOU.</div>
         </div>
-        <div className="hero-corner-note" aria-hidden="true">
-          <span>TIJUANA</span>
-          <i>32</i>
-          <span>BAJA CALIFORNIA</span>
+        <div className="hero-location">
+          <span>TIJUANA, MX</span>
+          <span>U.S. PATIENTS WELCOME</span>
         </div>
       </section>
 
-      <section className="science-art" aria-labelledby="science-title">
+      <section id="experience" className="science-section">
         <div className="science-copy">
-          <p className="mini-label gold">DENTISTRY WITHOUT THE TEMPLATE</p>
-          <h2 id="science-title"><span>Science.</span><span>Art.</span><span className="gold-word">People.</span></h2>
-          <p>
-            NONE32 is a bilingual dental clinic in Tijuana, Baja California serving local patients and patients traveling from the United States for dental implants, restorative dentistry, cosmetic dentistry and general dental care.
-          </p>
-          <Link className="editorial-link" href="/en/#clinic">Discover the clinic <span>→</span></Link>
+          <p className="kicker gold">DENTISTRY WITHOUT LIMITS</p>
+          <h2><span>Science.</span><span>Art.</span><span className="gold-text">People.</span></h2>
+          <p>NONE32 is a bilingual dental clinic in Tijuana, Baja California serving local and U.S. patients for implant, restorative, cosmetic and general dental care.</p>
+          <a className="text-link" href="#clinic">Discover more <span>→</span></a>
         </div>
         <div className="science-photo">
           <Image
             src="/assets/clinic-real.webp"
             alt="Real NONE32 reception area in Tijuana"
             fill
-            sizes="(max-width: 800px) 100vw, 62vw"
-            className="clinic-photo-main"
+            sizes="(max-width: 800px) 100vw, 64vw"
+            className="photo-cover reception-photo"
           />
-          <div className="photo-vignette" />
-          <div className="photo-caption">REAL NONE32<br />ZONA RÍO · TIJUANA</div>
+          <div className="photo-shade" />
+        </div>
+        <div className="science-side-note">
+          <span>A SPACE<br />DESIGNED<br />FOR YOUR<br />WELL-BEING.</span>
+          <i />
         </div>
       </section>
 
-      <section id="treatments" className="treatments-editorial" aria-labelledby="treatments-title">
-        <div className="treatments-lead">
-          <p className="mini-label gold">TREATMENT FOCUS</p>
-          <h2 id="treatments-title">What we do.</h2>
-          <p>Clear treatment paths instead of a wall of generic dental icons.</p>
-        </div>
-        <div className="treatment-lines">
-          {treatments.map(([number, label, description]) => (
+      <section id="treatments" className="treatment-band" aria-labelledby="treatment-title">
+        <div className="treatment-band-label" id="treatment-title">TREATMENTS</div>
+        <div className="treatment-items">
+          {treatments.map(([number, label]) => (
             <a
-              href={`https://wa.me/526648816589?text=${encodeURIComponent(`Hello NONE32, I'd like information about ${label}.`)}`}
-              className="treatment-line"
               key={label}
+              href={`https://wa.me/526648816589?text=${encodeURIComponent(`Hello NONE32, I'd like information about ${label}.`)}`}
+              className="treatment-item"
             >
-              <span className="treatment-number">{number}</span>
-              <div>
-                <strong>{label}</strong>
-                <p>{description}</p>
-              </div>
-              <b aria-hidden="true">↗</b>
+              <span>{number}</span>
+              <strong>{label}</strong>
+              <b>↗</b>
             </a>
           ))}
         </div>
       </section>
 
-      <section className="brand-triptych" aria-label="NONE32 brand statement">
-        <div className="triptych-panel mustard-panel">
-          <span>DETAILS<br />MAKE THE<br />DIFFERENCE.</span>
+      <section className="mood-grid" aria-label="NONE32 brand experience">
+        <div className="mood-panel mustard-texture">
+          <span>DETAILS<br />THAT MAKE<br />A DIFFERENCE.</span>
         </div>
-        <div className="triptych-center">
-          <p className="mini-label gold">YOUR VISIT, REFRAMED</p>
-          <h2>Your best version<br />can start here.</h2>
-          <a className="lux-button dark" href={whatsapp}>Book your visit <span>→</span></a>
+        <div className="mood-center">
+          <h2>Your best version<br /><em>starts here.</em></h2>
+          <a className="button button-outline-dark" href={whatsapp}>Book your appointment <span>→</span></a>
         </div>
-        <div className="triptych-panel plum-panel">
+        <div className="mood-panel plum-texture">
           <span>CONFIDENCE<br />LOOKS<br />DIFFERENT<br />ON EVERYONE.</span>
         </div>
       </section>
 
-      <section id="clinic" className="clinic-story">
-        <div className="clinic-story-copy">
-          <p className="mini-label gold">OUR CLINIC</p>
+      <section id="clinic" className="clinic-grid">
+        <div className="clinic-copy">
+          <p className="kicker gold">OUR CLINIC</p>
           <h2>A space for<br />your well-being.</h2>
-          <p>
-            The physical clinic stays true to what you see here: clean architecture, warm materials and a modern environment in Zona Río. The website uses real NONE32 photography rather than invented clinic spaces.
-          </p>
-          <a className="editorial-link dark-link" href={whatsapp}>Plan your first visit <span>→</span></a>
+          <p>Personalized care, modern treatment planning and a contemporary environment in Zona Río, Tijuana.</p>
+          <a className="text-link dark-link" href={whatsapp}>Plan your first visit <span>→</span></a>
         </div>
-        <div className="clinic-story-photo">
+        <div className="clinic-photo">
           <Image
-            src="/assets/clinic-real.webp"
-            alt="NONE32 clinic interior in Zona Río, Tijuana"
+            src="/assets/clinic-evening-hq.webp"
+            alt="Real NONE32 clinic interior in Tijuana"
             fill
-            sizes="(max-width: 800px) 100vw, 58vw"
-            className="clinic-photo-detail"
+            sizes="(max-width: 800px) 100vw, 45vw"
+            className="photo-cover evening-photo"
           />
-          <div className="clinic-story-shade" />
-          <div className="clinic-photo-stamp">NONE32<br /><small>REAL CLINIC · TIJUANA</small></div>
+          <div className="clinic-photo-overlay" />
+        </div>
+        <div className="clinic-statement">
+          <span>MORE<br />THAN DENTISTRY.<br />A BETTER<br />YOU.</span>
+          <i />
         </div>
       </section>
 
-      <section id="us-patients" className="us-editorial" aria-labelledby="us-title">
-        <div className="us-left">
-          <p className="mini-label gold">FOR U.S. PATIENTS</p>
-          <h2 id="us-title">San Diego<br /><span>↘</span> Tijuana.</h2>
-          <p>
-            NONE32 serves patients traveling from Southern California with English and Spanish communication, clearly communicated USD pricing for U.S. patients and PPO reimbursement documentation assistance for eligible patients.
-          </p>
-          <a className="lux-button filled" href={whatsapp}>Plan your visit <span>→</span></a>
+      <section id="us-patients" className="us-section" aria-labelledby="us-title">
+        <div className="us-copy">
+          <p className="kicker gold">FOR U.S. PATIENTS</p>
+          <h2 id="us-title">San Diego<br /><em>to Tijuana.</em></h2>
+          <p>English and Spanish communication, clearly communicated USD pricing for U.S. patients, and PPO reimbursement documentation assistance for eligible patients.</p>
+          <a className="button button-gold" href={whatsapp}>Plan your visit <span>→</span></a>
         </div>
-        <div className="us-facts">
-          <div><span>01</span><strong>Bilingual care</strong><p>English and Spanish communication before, during and after treatment.</p></div>
-          <div><span>02</span><strong>USD pricing</strong><p>Pricing communicated clearly for U.S. patients before treatment.</p></div>
+        <div className="fact-grid">
+          <div><span>01</span><strong>Bilingual care</strong><p>English and Spanish communication throughout your visit.</p></div>
+          <div><span>02</span><strong>USD pricing</strong><p>Clear treatment pricing for U.S. patients.</p></div>
           <div><span>03</span><strong>PPO support</strong><p>Documentation assistance for eligible out-of-network reimbursement.</p></div>
-          <div><span>04</span><strong>Zona Río</strong><p>Leona Vicario 1452, Interior 21B, Tijuana, Baja California.</p></div>
+          <div><span>04</span><strong>Zona Río</strong><p>Leona Vicario 1452, Interior 21B, Tijuana.</p></div>
         </div>
       </section>
 
-      <section id="questions" className="answers-editorial" aria-labelledby="answers-title">
-        <div className="answers-title-block">
-          <p className="mini-label gold">STRAIGHT ANSWERS</p>
-          <h2 id="answers-title">Useful before<br />you ever sit<br />in the chair.</h2>
+      <section id="questions" className="answers-section" aria-labelledby="answers-title">
+        <div className="answers-heading">
+          <p className="kicker gold">STRAIGHT ANSWERS</p>
+          <h2 id="answers-title">Useful before<br />you sit in<br />the chair.</h2>
         </div>
         <div className="answers-list">
           <a href={whatsapp}><span>How much are dental implants in Tijuana?</span><b>→</b></a>
-          <a href={whatsapp}><span>What is full-arch implant rehabilitation?</span><b>→</b></a>
+          <a href={whatsapp}><span>What is All-on-4 full-arch treatment?</span><b>→</b></a>
           <a href={whatsapp}><span>How do I plan dental care from San Diego?</span><b>→</b></a>
           <a href={whatsapp}><span>How does PPO reimbursement assistance work?</span><b>→</b></a>
-          <a href={whatsapp}><span>Ask NONE32 a specific question</span><b>→</b></a>
         </div>
       </section>
 
-      <section className="trust-band" aria-label="NONE32 trust information">
-        <p className="mini-label gold">REAL INFORMATION. REAL PLACE.</p>
-        <div className="trust-grid">
-          <div><strong>Tijuana, B.C.</strong><span>Zona Río location</span></div>
-          <div><strong>English + Spanish</strong><span>Bilingual patient communication</span></div>
-          <div><strong>+52 664 881 6589</strong><span>Clinic phone</span></div>
+      <section id="contact" className="closing-section">
+        <div>
+          <p className="kicker gold">YOUR NEXT CHAPTER</p>
+          <h2>Starts <em>here.</em></h2>
         </div>
-      </section>
-
-      <section id="contact" className="closing-editorial">
-        <p className="mini-label gold">WE GET IT. WE GOT YOU.</p>
-        <h2>Starts <em>here.</em></h2>
-        <p className="closing-copy">Tell us what you need. We’ll help you understand the next step before you travel.</p>
-        <div className="closing-buttons">
-          <a className="lux-button filled" href={whatsapp}>Book your visit <span>→</span></a>
-          <a className="lux-button" href="tel:+526648816589">Call NONE32</a>
+        <div className="button-row closing-buttons">
+          <a className="button button-gold" href={whatsapp}>Book your appointment <span>→</span></a>
+          <a className="button button-clear" href="tel:+526648816589">Call NONE32</a>
         </div>
       </section>
 
