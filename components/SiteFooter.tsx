@@ -24,6 +24,7 @@ export function SiteFooter() {
         <Link href="/en/#treatments">Treatments</Link>
         <Link href="/en/#clinic">Our clinic</Link>
         <Link href="/en/#experience">Experience</Link>
+        <Link href="/en/partners">Partners</Link>
         <Link href="/en/#contact">Contact</Link>
         <Link href="/en/privacy">Privacy</Link>
         <Link href="/sitemap.xml">Sitemap</Link>
