@@ -1,22 +1,22 @@
 import Link from 'next/link';
-import { BrandMark } from '@/components/BrandMark';
 
 const nav = [
   ['Home', '/#home'],
   ['Treatments', '/#treatments'],
   ['Our clinic', '/#clinic'],
-  ['Experience', '/#experience'],
+  ['U.S. patients', '/#us-patients'],
   ['Partners', '/partners'],
   ['Contact', '/#contact']
 ] as const;
 
+const logoUrl = 'https://framerusercontent.com/images/KKpZfPwzmZcT7F6ex8PXATYkw4.png?height=450&width=800';
 const whatsapp = 'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
 
 export function SiteHeader() {
   return (
     <header className="site-header">
       <Link className="brand" href="/" aria-label="NONE32 home">
-        <BrandMark width={158} />
+        <img src={logoUrl} alt="NONE32" width="160" height="56" />
       </Link>
       <nav className="desktop-nav" aria-label="Primary navigation">
         {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
