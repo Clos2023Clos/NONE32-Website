@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { BrandMark } from '@/components/BrandMark';
 
+const logoUrl = 'https://framerusercontent.com/images/KKpZfPwzmZcT7F6ex8PXATYkw4.png?height=450&width=800';
 const whatsapp = 'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
 
 export function SiteFooter() {
@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-art" aria-hidden="true"><span /></div>
       <div className="footer-center">
-        <BrandMark width={205} />
+        <img src={logoUrl} alt="NONE32" width="205" height="68" />
         <p>WE GET IT. WE GOT YOU.</p>
         <div className="footer-address">
           <strong>TIJUANA, MX</strong>
@@ -23,7 +23,7 @@ export function SiteFooter() {
         <Link href="/#home">Home</Link>
         <Link href="/#treatments">Treatments</Link>
         <Link href="/#clinic">Our clinic</Link>
-        <Link href="/#experience">Experience</Link>
+        <Link href="/#us-patients">U.S. patients</Link>
         <Link href="/partners">Partners</Link>
         <Link href="/#contact">Contact</Link>
         <Link href="/privacy">Privacy</Link>
