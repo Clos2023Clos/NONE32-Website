@@ -1,8 +1,14 @@
+import path from 'node:path';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp']
+  },
+  webpack(config) {
+    config.resolve.alias['next/image'] = path.resolve('./components/SafeImage.tsx');
+    return config;
   },
   async redirects() {
     return [
