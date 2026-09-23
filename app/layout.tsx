@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Bodoni_Moda, Montserrat } from 'next/font/google';
 import './globals.css';
+import './hero-selected.css';
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
@@ -17,7 +18,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.none32.com'),
+  metadataBase: new URL('https://none32.com'),
   title: {
     default: 'NONE32 | Dental Clinic in Tijuana, Mexico',
     template: '%s | NONE32'
@@ -26,13 +27,13 @@ export const metadata: Metadata = {
     'NONE32 is a bilingual dental clinic in Tijuana, Baja California serving local and U.S. patients with dental implants, restorative, cosmetic and general dental care.',
   applicationName: 'NONE32',
   alternates: {
-    canonical: 'https://www.none32.com/'
+    canonical: 'https://none32.com/'
   },
   openGraph: {
     type: 'website',
     siteName: 'NONE32',
     locale: 'en_US',
-    url: 'https://www.none32.com/',
+    url: 'https://none32.com/',
     title: 'NONE32 | Dental Clinic in Tijuana, Mexico',
     description:
       'Bilingual dental care in Tijuana for local and U.S. patients, including implants, crowns, veneers, full-arch rehabilitation and general dentistry.'
