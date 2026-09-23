@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
-import heroSrc from '@/lib/hero';
 
 export const metadata: Metadata = {
   title: 'Dentist in Tijuana for U.S. Patients',
@@ -54,12 +53,14 @@ export default function EnglishHomePage() {
 
       <section id="home" className="hero" aria-labelledby="home-title">
         <SiteHeader />
-        <img
-          src={heroSrc}
+        <Image
+          src="/assets/hero-selected.avif"
           alt="NONE32 editorial brand portrait"
+          fill
+          priority
+          quality={95}
+          sizes="100vw"
           className="hero-image hero-image-selected"
-          fetchPriority="high"
-          decoding="async"
         />
         <div className="hero-overlay" />
         <div className="hero-copy">
