@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import heroSrc from '@/lib/hero';
 
 export const metadata: Metadata = {
   title: 'Dentist in Tijuana for U.S. Patients',
@@ -53,14 +53,12 @@ export default function EnglishHomePage() {
 
       <section id="home" className="hero" aria-labelledby="home-title">
         <SiteHeader />
-        <Image
-          src="/assets/hero-selected.avif"
+        <img
+          src={heroSrc}
           alt="NONE32 editorial brand portrait"
-          fill
-          priority
-          quality={95}
-          sizes="100vw"
           className="hero-image hero-image-selected"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="hero-overlay" />
         <div className="hero-copy">
@@ -105,12 +103,13 @@ export default function EnglishHomePage() {
           <a className="text-link dark-link" href={whatsapp}>Plan your first visit <span>→</span></a>
         </div>
         <div className="clinic-photo">
-          <Image
+          <img
             src="/assets/clinic-evening-hq.webp"
             alt="NONE32 clinic interior in Zona Río, Tijuana"
-            fill
-            sizes="(max-width: 800px) 100vw, 45vw"
             className="photo-cover evening-photo"
+            loading="lazy"
+            decoding="async"
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
           />
           <div className="clinic-photo-overlay" />
         </div>
