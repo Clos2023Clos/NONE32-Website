@@ -20,13 +20,13 @@ export function SiteFooter() {
         <a href={whatsapp} aria-label="Book your appointment">BOOK YOUR<br />APPOINTMENT <span>→</span></a>
       </div>
       <nav className="footer-nav" aria-label="Footer navigation">
-        <Link href="/en/#home">Home</Link>
-        <Link href="/en/#treatments">Treatments</Link>
-        <Link href="/en/#clinic">Our clinic</Link>
-        <Link href="/en/#experience">Experience</Link>
-        <Link href="/en/partners">Partners</Link>
-        <Link href="/en/#contact">Contact</Link>
-        <Link href="/en/privacy">Privacy</Link>
+        <Link href="/#home">Home</Link>
+        <Link href="/#treatments">Treatments</Link>
+        <Link href="/#clinic">Our clinic</Link>
+        <Link href="/#experience">Experience</Link>
+        <Link href="/partners">Partners</Link>
+        <Link href="/#contact">Contact</Link>
+        <Link href="/privacy">Privacy</Link>
         <Link href="/sitemap.xml">Sitemap</Link>
       </nav>
       <div className="footer-bottom"><span>© 2026 NONE32. All rights reserved.</span><span>U.S. patients welcome.</span></div>
