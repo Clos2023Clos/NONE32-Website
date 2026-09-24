@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.none32.com/sitemap.xml',
-    host: 'https://www.none32.com',
+    sitemap: 'https://none32.com/sitemap.xml',
+    host: 'https://none32.com',
   };
 }
