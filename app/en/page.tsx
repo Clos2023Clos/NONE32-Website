@@ -18,11 +18,11 @@ const whatsapp =
   'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
 
 const treatments = [
-  ['01', 'Dental implants'],
-  ['02', 'All-on-4 / full arch'],
-  ['03', 'Crowns & restorations'],
-  ['04', 'Veneers & smile design'],
-  ['05', 'General dentistry']
+  ['01', 'Dental implants', '/treatments/dental-implants-tijuana'],
+  ['02', 'All-on-4 / full arch', '/treatments/all-on-4-tijuana'],
+  ['03', 'Crowns & restorations', '/treatments/dental-crowns-tijuana'],
+  ['04', 'Veneers & smile design', '/treatments/veneers-tijuana'],
+  ['05', 'General dentistry', '/treatments/general-dentistry-tijuana']
 ] as const;
 
 const clinicSchema = {
@@ -82,16 +82,12 @@ export default function EnglishHomePage() {
       <section id="treatments" className="treatment-band" aria-labelledby="treatment-title">
         <div className="treatment-band-label" id="treatment-title">TREATMENTS</div>
         <div className="treatment-items">
-          {treatments.map(([number, label]) => (
-            <a
-              key={label}
-              href={`https://wa.me/526648816589?text=${encodeURIComponent(`Hello NONE32, I'd like information about ${label}.`)}`}
-              className="treatment-item"
-            >
+          {treatments.map(([number, label, href]) => (
+            <Link key={label} href={href} className="treatment-item">
               <span>{number}</span>
               <strong>{label}</strong>
               <b>↗</b>
-            </a>
+            </Link>
           ))}
         </div>
       </section>
