@@ -1,0 +1,1 @@
+NONE32 favicon source: exact user-supplied 64x64 Ø32 artwork. Binary icon is committed separately as app/icon.png.
