@@ -85,7 +85,7 @@ export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] })
         }}
       >
         <img
-          src="/treatment-approved"
+          src="/treatment-approved-v2"
           alt=""
           aria-hidden="true"
           loading="eager"
