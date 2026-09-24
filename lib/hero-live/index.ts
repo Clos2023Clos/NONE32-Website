@@ -1,7 +1,11 @@
-import c0 from './chunk00';
-import c1 from './chunk01';
-import c2 from './chunk02';
-import c3 from './chunk03';
+import c0a from './chunk00a';
+import c0b from './chunk00b';
+import c1a from './chunk01a';
+import c1b from './chunk01b';
+import c2a from './chunk02a';
+import c2b from './chunk02b';
+import c3a from './chunk03a';
+import c3b from './chunk03b';
 import c4 from './chunk04';
 import c5 from './chunk05';
 import c6 from './chunk06';
@@ -12,5 +16,5 @@ import c9 from './chunk09';
 import c10 from './chunk10';
 import c11 from './chunk11';
 
-const heroSrc = `data:image/webp;base64,${c0}${c1}${c2}${c3}${c4}${c5}${c6}${c7a}${c7b}${c8}${c9}${c10}${c11}`;
+const heroSrc = `data:image/webp;base64,${c0a}${c0b}${c1a}${c1b}${c2a}${c2b}${c3a}${c3b}${c4}${c5}${c6}${c7a}${c7b}${c8}${c9}${c10}${c11}`;
 export default heroSrc;
