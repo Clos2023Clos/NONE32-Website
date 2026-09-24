@@ -1,0 +1,1 @@
+Approved treatment imagery source: exact composition selected by user on 2026-09-24. Do not regenerate or substitute without explicit approval.
