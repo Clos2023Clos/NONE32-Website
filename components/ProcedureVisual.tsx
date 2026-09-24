@@ -1,82 +1,44 @@
-import type { CSSProperties } from 'react';
 import type { TreatmentPageData } from '@/lib/treatments';
 
-const SOURCE_WIDTH = 1536;
-
-type Crop = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  alt: string;
-};
-
-const crops: Record<TreatmentPageData['visual'], Crop> = {
+const panelByType: Record<TreatmentPageData['visual'], { index: number; alt: string }> = {
   implant: {
-    x: 22,
-    y: 143,
-    width: 279,
-    height: 409,
+    index: 0,
     alt: 'Dental implant, abutment and ceramic crown from the approved NONE32 treatment artwork'
   },
   'full-arch': {
-    x: 315,
-    y: 143,
-    width: 293,
-    height: 409,
+    index: 1,
     alt: 'All-on-4 full-arch restoration from the approved NONE32 treatment artwork'
   },
   crown: {
-    x: 621,
-    y: 143,
-    width: 294,
-    height: 409,
+    index: 2,
     alt: 'Ceramic crown and prepared tooth from the approved NONE32 treatment artwork'
   },
   veneer: {
-    x: 929,
-    y: 143,
-    width: 294,
-    height: 409,
+    index: 3,
     alt: 'Veneers and smile design from the approved NONE32 treatment artwork'
   },
   general: {
-    x: 1236,
-    y: 143,
-    width: 279,
-    height: 409,
+    index: 4,
     alt: 'General dentistry close-up from the approved NONE32 treatment artwork'
   }
 };
 
-function cropImageStyle(crop: Crop): CSSProperties {
-  return {
-    position: 'absolute',
-    width: `${(SOURCE_WIDTH / crop.width) * 100}%`,
-    height: 'auto',
-    maxWidth: 'none',
-    left: `${-(crop.x / crop.width) * 100}%`,
-    top: `${-(crop.y / crop.height) * 100}%`,
-    display: 'block',
-    userSelect: 'none'
-  };
-}
-
 export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] }) {
-  const crop = crops[type];
+  const panel = panelByType[type];
 
   return (
     <figure className={`procedure-visual procedure-visual-${type}`}>
       <div className="procedure-light procedure-light-one" />
       <div className="procedure-light procedure-light-two" />
+
       <div
         role="img"
-        aria-label={crop.alt}
+        aria-label={panel.alt}
         style={{
           position: 'relative',
           zIndex: 2,
           width: 'min(100%, 440px)',
-          aspectRatio: `${crop.width} / ${crop.height}`,
+          aspectRatio: '270 / 404',
           overflow: 'hidden',
           borderRadius: '26px',
           border: '1px solid rgba(198,154,90,.34)',
@@ -85,13 +47,21 @@ export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] })
         }}
       >
         <img
-          src="/treatment-approved-v2"
+          src="/assets/treatments/approved-montage.jpg"
           alt=""
           aria-hidden="true"
           loading="eager"
-          decoding="async"
+          decoding="sync"
           draggable={false}
-          style={cropImageStyle(crop)}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: `${-panel.index * 100}%`,
+            width: '500%',
+            height: '100%',
+            maxWidth: 'none',
+            display: 'block'
+          }}
         />
       </div>
     </figure>
