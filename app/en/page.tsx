@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { ClinicPhoto } from '@/components/ClinicPhoto';
 import heroSrc from '@/lib/hero-live';
 
 export const metadata: Metadata = {
@@ -103,14 +104,7 @@ export default function EnglishHomePage() {
           <a className="text-link dark-link" href={whatsapp}>Plan your first visit <span>→</span></a>
         </div>
         <div className="clinic-photo">
-          <img
-            src="/assets/clinic-reception-clean.jpg?v=3"
-            alt="NONE32 clinic reception in Zona Río, Tijuana"
-            className="photo-cover evening-photo"
-            loading="lazy"
-            decoding="async"
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
-          />
+          <ClinicPhoto />
           <div className="clinic-photo-overlay" />
         </div>
         <div className="clinic-statement">
