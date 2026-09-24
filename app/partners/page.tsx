@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     'NONE32 partners with hotels and local businesses in Tijuana to give guests and teams access to a nearby bilingual dental resource in Zona Río, at no cost to the partner business.',
   alternates: {
-    canonical: 'https://www.none32.com/partners'
+    canonical: 'https://none32.com/partners'
   },
   openGraph: {
     title: 'NONE32 Partner Network | Tijuana',
     description:
       'A bilingual dental resource for hotel guests, visitors and local teams in Zona Río, Tijuana.',
-    url: 'https://www.none32.com/partners',
+    url: 'https://none32.com/partners',
     type: 'website'
   }
 };
