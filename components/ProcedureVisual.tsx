@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react';
 import type { TreatmentPageData } from '@/lib/treatments';
-import approvedTreatmentComposite from '@/lib/treatment-approved';
 
 const SOURCE_WIDTH = 1536;
 
@@ -12,9 +11,6 @@ type Crop = {
   alt: string;
 };
 
-// Exact crops from the user-approved five-panel NONE32 treatment artwork.
-// The implant crop is intentionally a little wider so the crown, abutment,
-// and full fixture keep the same breathing room seen in the approved reference.
 const crops: Record<TreatmentPageData['visual'], Crop> = {
   implant: {
     x: 22,
@@ -73,7 +69,6 @@ export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] })
     <figure className={`procedure-visual procedure-visual-${type}`}>
       <div className="procedure-light procedure-light-one" />
       <div className="procedure-light procedure-light-two" />
-
       <div
         role="img"
         aria-label={crop.alt}
@@ -90,7 +85,7 @@ export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] })
         }}
       >
         <img
-          src={approvedTreatmentComposite}
+          src="/treatment-approved"
           alt=""
           aria-hidden="true"
           loading="eager"
