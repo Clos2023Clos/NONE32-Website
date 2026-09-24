@@ -20,6 +20,13 @@ const nextConfig = {
         destination: 'https://none32.com/:path*',
         permanent: true
       },
+      // Preserve every existing printed QR that points to the old Framer /links route.
+      // After the www host redirect above, /links lands directly on the NONE32 homepage.
+      {
+        source: '/links',
+        destination: '/',
+        permanent: true
+      },
       {
         source: '/en/partners/:code',
         destination: '/partners/:code',
