@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Bodoni_Moda, Montserrat } from 'next/font/google';
 import './globals.css';
 import './hero-selected.css';
+import './treatments.css';
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
