@@ -3,7 +3,6 @@ import type { TreatmentPageData } from '@/lib/treatments';
 import approvedTreatmentComposite from '@/lib/treatment-approved';
 
 const SOURCE_WIDTH = 1536;
-const SOURCE_HEIGHT = 1024;
 
 type Crop = {
   x: number;
