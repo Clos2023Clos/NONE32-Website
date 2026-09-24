@@ -1,54 +1,34 @@
 import type { TreatmentPageData } from '@/lib/treatments';
-import implantSrc from '@/lib/procedure-approved/implant';
-import fullArchSrc from '@/lib/procedure-approved/full-arch/index';
-import crownSrc from '@/lib/procedure-approved/crown/index';
-import veneerSrc from '@/lib/procedure-approved/veneer/index';
-import generalSrc from '@/lib/procedure-approved/general/index';
+import approvedTreatmentComposite from '@/lib/treatment-approved';
 
-const visuals = {
-  implant: {
-    src: implantSrc,
-    alt: 'Dental implant with ceramic crown, abutment and implant fixture'
-  },
-  'full-arch': {
-    src: fullArchSrc,
-    alt: 'All-on-4 full-arch dental restoration supported by implants'
-  },
-  crown: {
-    src: crownSrc,
-    alt: 'Ceramic dental crown restoration above a prepared tooth'
-  },
-  veneer: {
-    src: veneerSrc,
-    alt: 'Porcelain veneers and smile design'
-  },
-  general: {
-    src: generalSrc,
-    alt: 'Natural molar representing preventive and general dentistry'
-  }
-} as const;
+const positionByType: Record<TreatmentPageData['visual'], string> = {
+  implant: '0%',
+  'full-arch': '25%',
+  crown: '50%',
+  veneer: '75%',
+  general: '100%'
+};
+
+const altByType: Record<TreatmentPageData['visual'], string> = {
+  implant: 'Dental implant, abutment and crown in the approved NONE32 editorial treatment artwork',
+  'full-arch': 'All-on-4 full-arch restoration in the approved NONE32 editorial treatment artwork',
+  crown: 'Ceramic crown and prepared tooth in the approved NONE32 editorial treatment artwork',
+  veneer: 'Veneers and smile design in the approved NONE32 editorial treatment artwork',
+  general: 'General dentistry close-up in the approved NONE32 editorial treatment artwork'
+};
 
 export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] }) {
-  const visual = visuals[type];
-
   return (
-    <figure
-      className={`procedure-visual procedure-visual-${type}`}
-      style={{ overflow: 'hidden', background: '#0f0d0b' }}
-    >
-      <img
-        src={visual.src}
-        alt={visual.alt}
-        loading="eager"
-        decoding="async"
+    <figure className={`procedure-visual procedure-visual-${type}`}>
+      <div className="procedure-light procedure-light-one" />
+      <div className="procedure-light procedure-light-two" />
+      <div
+        className="approved-procedure-frame"
+        role="img"
+        aria-label={altByType[type]}
         style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center',
-          display: 'block'
+          backgroundImage: `url(${approvedTreatmentComposite})`,
+          backgroundPosition: `${positionByType[type]} 19%`
         }}
       />
     </figure>
