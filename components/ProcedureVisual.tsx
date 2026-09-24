@@ -1,9 +1,9 @@
 import type { TreatmentPageData } from '@/lib/treatments';
 import implantSrc from '@/lib/procedure-approved/implant';
-import fullArchSrc from '@/lib/procedure-approved/full-arch';
-import crownSrc from '@/lib/procedure-approved/crown';
-import veneerSrc from '@/lib/procedure-approved/veneer';
-import generalSrc from '@/lib/procedure-approved/general';
+import fullArchSrc from '@/lib/procedure-approved/full-arch/index';
+import crownSrc from '@/lib/procedure-approved/crown/index';
+import veneerSrc from '@/lib/procedure-approved/veneer/index';
+import generalSrc from '@/lib/procedure-approved/general/index';
 
 const visuals = {
   implant: {
