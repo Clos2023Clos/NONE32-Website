@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import heroSrc from '@/lib/hero-live';
-import clinicBase64 from '@/lib/clinic-small-base64';
 
 export const metadata: Metadata = {
   title: 'Dentist in Tijuana for U.S. Patients',
@@ -16,8 +15,6 @@ export const metadata: Metadata = {
 
 const whatsapp =
   'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
-
-const clinicSrc = `data:image/webp;base64,${clinicBase64}`;
 
 const treatments = [
   ['01', 'Dental implants'],
@@ -107,8 +104,8 @@ export default function EnglishHomePage() {
         </div>
         <div className="clinic-photo">
           <img
-            src={clinicSrc}
-            alt="NONE32 clinic interior in Zona Río, Tijuana"
+            src="/assets/clinic-reception-clean.webp"
+            alt="NONE32 clinic reception in Zona Río, Tijuana"
             className="photo-cover evening-photo"
             loading="lazy"
             decoding="async"
