@@ -104,7 +104,7 @@ export default function EnglishHomePage() {
         </div>
         <div className="clinic-photo">
           <img
-            src="/assets/clinic-reception-clean.jpg?v=2"
+            src="/assets/clinic-reception-clean.jpg?v=3"
             alt="NONE32 clinic reception in Zona Río, Tijuana"
             className="photo-cover evening-photo"
             loading="lazy"
