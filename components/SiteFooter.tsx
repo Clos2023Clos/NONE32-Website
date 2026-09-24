@@ -1,9 +1,36 @@
 import Link from 'next/link';
 
-const logoUrl = 'https://framerusercontent.com/images/KKpZfPwzmZcT7F6ex8PXATYkw4.png?height=450&width=800';
-const whatsapp = 'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
+type Language = 'en' | 'es';
 
-export function SiteFooter() {
+const logoUrl = 'https://framerusercontent.com/images/KKpZfPwzmZcT7F6ex8PXATYkw4.png?height=450&width=800';
+
+export function SiteFooter({ language = 'en' }: { language?: Language }) {
+  const whatsapp = language === 'es'
+    ? 'https://wa.me/526648816589?text=Hola%20NONE32%2C%20me%20gustar%C3%ADa%20agendar%20una%20consulta.'
+    : 'https://wa.me/526648816589?text=Hello%20NONE32%2C%20I%27d%20like%20to%20schedule%20a%20consultation.';
+
+  const nav = language === 'es'
+    ? [
+        ['Inicio', '/es#home'],
+        ['Tratamientos', '/es#treatments'],
+        ['Nuestra clínica', '/es#clinic'],
+        ['Pacientes de EE.UU.', '/es#us-patients'],
+        ['Socios', '/partners'],
+        ['Contacto', '/es#contact'],
+        ['Privacidad', '/privacy'],
+        ['Mapa del sitio', '/sitemap.xml']
+      ] as const
+    : [
+        ['Home', '/#home'],
+        ['Treatments', '/#treatments'],
+        ['Our clinic', '/#clinic'],
+        ['U.S. patients', '/#us-patients'],
+        ['Partners', '/partners'],
+        ['Contact', '/#contact'],
+        ['Privacy', '/privacy'],
+        ['Sitemap', '/sitemap.xml']
+      ] as const;
+
   return (
     <footer className="site-footer">
       <div className="footer-art" aria-hidden="true"><span /></div>
@@ -17,19 +44,17 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="footer-action">
-        <a href={whatsapp} aria-label="Book your appointment">BOOK YOUR<br />APPOINTMENT <span>→</span></a>
+        <a href={whatsapp} aria-label={language === 'es' ? 'Agenda tu cita' : 'Book your appointment'}>
+          {language === 'es' ? <>AGENDA TU<br />CITA</> : <>BOOK YOUR<br />APPOINTMENT</>} <span>→</span>
+        </a>
       </div>
-      <nav className="footer-nav" aria-label="Footer navigation">
-        <Link href="/#home">Home</Link>
-        <Link href="/#treatments">Treatments</Link>
-        <Link href="/#clinic">Our clinic</Link>
-        <Link href="/#us-patients">U.S. patients</Link>
-        <Link href="/partners">Partners</Link>
-        <Link href="/#contact">Contact</Link>
-        <Link href="/privacy">Privacy</Link>
-        <Link href="/sitemap.xml">Sitemap</Link>
+      <nav className="footer-nav" aria-label={language === 'es' ? 'Navegación de pie de página' : 'Footer navigation'}>
+        {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
       </nav>
-      <div className="footer-bottom"><span>© 2026 NONE32. All rights reserved.</span><span>U.S. patients welcome.</span></div>
+      <div className="footer-bottom">
+        <span>© 2026 NONE32. {language === 'es' ? 'Todos los derechos reservados.' : 'All rights reserved.'}</span>
+        <span>{language === 'es' ? 'Pacientes de EE.UU. bienvenidos.' : 'U.S. patients welcome.'}</span>
+      </div>
     </footer>
   );
 }
