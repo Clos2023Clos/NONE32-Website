@@ -1,39 +1,36 @@
 import type { TreatmentPageData } from '@/lib/treatments';
 
-const panelByType: Record<TreatmentPageData['visual'], { index: number; alt: string }> = {
+const visuals: Record<TreatmentPageData['visual'], { src: string; alt: string }> = {
   implant: {
-    index: 0,
+    src: '/assets/treatments/implant.webp',
     alt: 'Dental implant, abutment and ceramic crown from the approved NONE32 treatment artwork'
   },
   'full-arch': {
-    index: 1,
+    src: '/assets/treatments/full-arch.webp',
     alt: 'All-on-4 full-arch restoration from the approved NONE32 treatment artwork'
   },
   crown: {
-    index: 2,
+    src: '/assets/treatments/crown.webp',
     alt: 'Ceramic crown and prepared tooth from the approved NONE32 treatment artwork'
   },
   veneer: {
-    index: 3,
+    src: '/assets/treatments/veneer.webp',
     alt: 'Veneers and smile design from the approved NONE32 treatment artwork'
   },
   general: {
-    index: 4,
+    src: '/assets/treatments/general.webp',
     alt: 'General dentistry close-up from the approved NONE32 treatment artwork'
   }
 };
 
 export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] }) {
-  const panel = panelByType[type];
+  const visual = visuals[type];
 
   return (
     <figure className={`procedure-visual procedure-visual-${type}`}>
       <div className="procedure-light procedure-light-one" />
       <div className="procedure-light procedure-light-two" />
-
       <div
-        role="img"
-        aria-label={panel.alt}
         style={{
           position: 'relative',
           zIndex: 2,
@@ -47,19 +44,16 @@ export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] })
         }}
       >
         <img
-          src="/assets/treatments/approved-montage.jpg"
-          alt=""
-          aria-hidden="true"
+          src={visual.src}
+          alt={visual.alt}
           loading="eager"
-          decoding="sync"
+          decoding="async"
           draggable={false}
           style={{
-            position: 'absolute',
-            top: 0,
-            left: `${-panel.index * 100}%`,
-            width: '500%',
+            width: '100%',
             height: '100%',
-            maxWidth: 'none',
+            objectFit: 'cover',
+            objectPosition: 'center',
             display: 'block'
           }}
         />
