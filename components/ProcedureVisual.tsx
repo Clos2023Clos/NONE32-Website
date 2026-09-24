@@ -32,13 +32,24 @@ export function ProcedureVisual({ type }: { type: TreatmentPageData['visual'] })
   const visual = visuals[type];
 
   return (
-    <figure className={`procedure-visual procedure-visual-${type}`}>
+    <figure
+      className={`procedure-visual procedure-visual-${type}`}
+      style={{ overflow: 'hidden', background: '#0f0d0b' }}
+    >
       <img
         src={visual.src}
         alt={visual.alt}
-        className="procedure-photo"
         loading="eager"
         decoding="async"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center',
+          display: 'block'
+        }}
       />
     </figure>
   );
