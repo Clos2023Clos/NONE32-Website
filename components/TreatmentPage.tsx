@@ -7,85 +7,44 @@ import { treatmentPages, type TreatmentPageData } from '@/lib/treatments';
 const whatsappBase = 'https://wa.me/526648816589?text=';
 
 const conversionCopy: Record<string, { eyebrow: string; headline: string; body: string; bullets: string[] }> = {
-  'dental-implants-tijuana': {
-    eyebrow: 'PLANNING AN IMPLANT IN TIJUANA?',
-    headline: 'Start with your case, not a sales pitch.',
-    body: 'Send us your recent X-rays, CT/CBCT or treatment plan if you have them. We can help you understand what still needs to be evaluated before you make the trip.',
-    bullets: ['English + Spanish', 'Cross-border treatment planning', 'Clear sequence before treatment']
-  },
-  'all-on-4-tijuana': {
-    eyebrow: 'UPPER, LOWER OR BOTH ARCHES?',
-    headline: 'Know the complete treatment path before you travel.',
-    body: 'Full-arch treatment is more than implant placement. We plan the surgery, provisional phase, healing, final restoration and return visits as one coordinated case.',
-    bullets: ['Upper + lower cases planned together', 'Three-visit pathway for selected cases', 'Hotel stay can be coordinated']
-  },
-  'veneers-tijuana': {
-    eyebrow: 'THINKING ABOUT VENEERS?',
-    headline: 'Design the smile before preparing the teeth.',
-    body: 'Send us clear smile photos and any recent records you have. We can start the conversation around proportions, tooth position, enamel preservation and the result you actually want.',
-    bullets: ['Natural-looking smile design', 'Conservative planning', 'English + Spanish']
-  }
+  'dental-implants-tijuana': { eyebrow: 'PLANNING AN IMPLANT IN TIJUANA?', headline: 'Start with your case, not a sales pitch.', body: 'Send us your recent X-rays, CT/CBCT or treatment plan if you have them. We can help you understand what still needs to be evaluated before you make the trip.', bullets: ['English + Spanish', 'Cross-border treatment planning', 'Clear sequence before treatment'] },
+  'all-on-4-tijuana': { eyebrow: 'UPPER, LOWER OR BOTH ARCHES?', headline: 'Know the complete treatment path before you travel.', body: 'Full-arch treatment is more than implant placement. We plan the surgery, provisional phase, healing, final restoration and return visits as one coordinated case.', bullets: ['Upper + lower cases planned together', 'Three-visit pathway for selected cases', 'Hotel stay can be coordinated'] },
+  'veneers-tijuana': { eyebrow: 'THINKING ABOUT VENEERS?', headline: 'Design the smile before preparing the teeth.', body: 'Send us clear smile photos and any recent records you have. We can start the conversation around proportions, tooth position, enamel preservation and the result you actually want.', bullets: ['Natural-looking smile design', 'Conservative planning', 'English + Spanish'] }
+};
+
+const pricing: Record<string, { label: string; price: string; detail?: string; note?: string }> = {
+  'dental-implants-tijuana': { label: 'SINGLE DENTAL IMPLANT', price: '$1,500 USD', detail: 'Includes the implant, abutment and final crown.', note: 'Final treatment needs and fees are confirmed after clinical evaluation and appropriate imaging.' },
+  'veneers-tijuana': { label: 'VENEERS', price: '$499 USD', detail: 'Per veneer.', note: 'Final treatment needs and fees are confirmed after clinical evaluation.' },
+  'dental-crowns-tijuana': { label: 'CROWNS', price: '$450 USD', detail: 'Per crown. Material is selected according to the clinical and esthetic needs of the case.', note: 'Final treatment needs and fees are confirmed after clinical evaluation.' },
+  'general-dentistry-tijuana': { label: 'NEW PATIENT VISIT', price: '$100 USD', detail: 'Includes a comprehensive evaluation and necessary X-rays.', note: 'Ask about current new-patient promotions when scheduling.' }
 };
 
 export function TreatmentPage({ data }: { data: TreatmentPageData }) {
   const whatsapp = `${whatsappBase}${encodeURIComponent(`Hello NONE32, I'd like to know if ${data.navLabel} is right for me.`)}`;
   const related = Object.values(treatmentPages).filter((item) => item.slug !== data.slug).slice(0, 4);
   const conversion = conversionCopy[data.slug];
-
+  const price = pricing[data.slug];
   const schema = [
-    {
-      '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: data.title,
-      description: data.seoDescription, url: `https://none32.com/treatments/${data.slug}`, lastReviewed: '2026-09-28',
-      medicalAudience: { '@type': 'MedicalAudience', audienceType: 'Patient' },
-      about: { '@type': 'MedicalProcedure', name: data.navLabel },
-      publisher: { '@type': 'Dentist', name: 'NONE32', url: 'https://none32.com/', telephone: '+52-664-881-6589',
-        address: { '@type': 'PostalAddress', streetAddress: 'Leona Vicario 1452, Interior 21B', addressLocality: 'Tijuana', addressRegion: 'Baja California', postalCode: '22010', addressCountry: 'MX' } }
-    },
+    { '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: data.title, description: data.seoDescription, url: `https://none32.com/treatments/${data.slug}`, lastReviewed: '2026-09-28', medicalAudience: { '@type': 'MedicalAudience', audienceType: 'Patient' }, about: { '@type': 'MedicalProcedure', name: data.navLabel }, publisher: { '@type': 'Dentist', name: 'NONE32', url: 'https://none32.com/', telephone: '+52-664-881-6589', address: { '@type': 'PostalAddress', streetAddress: 'Leona Vicario 1452, Interior 21B', addressLocality: 'Tijuana', addressRegion: 'Baja California', postalCode: '22010', addressCountry: 'MX' } } },
     { '@context': 'https://schema.org', '@type': 'Service', name: data.title, provider: { '@type': 'Dentist', name: 'NONE32' }, areaServed: ['Tijuana', 'San Diego County', 'Southern California'], availableChannel: { '@type': 'ServiceChannel', serviceUrl: `https://none32.com/treatments/${data.slug}` } }
   ];
 
-  return (
-    <main className="treatment-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <section className="treatment-hero">
-        <SiteHeader />
-        <div className="treatment-hero-grid">
-          <div className="treatment-hero-copy">
-            <p className="kicker gold">{data.number} · NONE32 TREATMENT GUIDE</p>
-            <h1>{data.displayTitle.split('\n').map((line, index) => <span key={line}>{line}{index === 0 && <br />}</span>)}</h1>
-            <p className="treatment-dek">{data.dek}</p>
-            <div className="button-row">
-              <a className="button button-gold" href={whatsapp}>Start on WhatsApp <span>→</span></a>
-              <Link className="button button-clear" href="/#treatments">All treatments</Link>
-            </div>
-            {conversion && <p className="treatment-response-note">Have X-rays, a scan or an existing treatment plan? Send it with your message.</p>}
-          </div>
-          <ProcedureVisual type={data.visual} />
-        </div>
-        <div className="treatment-facts">{data.heroFacts.map((fact) => <div key={fact.label}><span>{fact.label}</span><strong>{fact.value}</strong></div>)}</div>
-      </section>
+  return <main className="treatment-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    <section className="treatment-hero"><SiteHeader /><div className="treatment-hero-grid"><div className="treatment-hero-copy"><p className="kicker gold">{data.number} · NONE32 TREATMENT GUIDE</p><h1>{data.displayTitle.split('\n').map((line,index)=><span key={line}>{line}{index===0&&<br />}</span>)}</h1><p className="treatment-dek">{data.dek}</p><div className="button-row"><a className="button button-gold" href={whatsapp}>Start on WhatsApp <span>→</span></a><Link className="button button-clear" href="/#treatments">All treatments</Link></div>{conversion&&<p className="treatment-response-note">Have X-rays, a scan or an existing treatment plan? Send it with your message.</p>}</div><ProcedureVisual type={data.visual} /></div><div className="treatment-facts">{data.heroFacts.map(fact=><div key={fact.label}><span>{fact.label}</span><strong>{fact.value}</strong></div>)}</div></section>
 
-      {conversion && <section className="conversion-panel">
-        <div><p className="kicker gold">{conversion.eyebrow}</p><h2>{conversion.headline}</h2><p>{conversion.body}</p></div>
-        <div className="conversion-actions"><div className="conversion-bullets">{conversion.bullets.map((bullet) => <span key={bullet}>+ {bullet}</span>)}</div><a className="button button-gold" href={whatsapp}>Tell us about your case <span>→</span></a></div>
-      </section>}
+    {price&&<section className="treatment-price-strip"><div><p className="kicker gold">{price.label}</p><span className="starting-at">Starting at</span><strong>{price.price}</strong></div><div><p>{price.detail}</p><small>{price.note}</small><a className="button button-gold" href={whatsapp}>Ask about your case <span>→</span></a></div></section>}
 
-      {data.slug === 'all-on-4-tijuana' && <section className="full-mouth-offer">
-        <div className="full-mouth-price"><span>UPPER + LOWER</span><strong>$25,000 <small>USD</small></strong><em>For qualifying cases after clinical evaluation.</em></div>
-        <div><p className="kicker gold">A COMPLETE TWO-ARCH PATHWAY</p><h2>One plan from surgery to final teeth.</h2><p>For patients who need both arches rehabilitated, NONE32 can coordinate the upper and lower treatment as one planned pathway instead of a collection of disconnected appointments.</p><div className="offer-grid"><span><b>01</b> Surgery + provisional phase</span><span><b>02</b> Healing + final records</span><span><b>03</b> Final restoration delivery</span><span><b>+</b> Hotel stay coordinated for the planned visits</span></div><p className="offer-disclaimer">Implant number, immediate loading, grafting, restorative design and exact visit sequence depend on examination, imaging, stability and individual clinical needs. Your written treatment plan defines what is included in your case.</p><a className="button button-gold" href={`${whatsappBase}${encodeURIComponent("Hello NONE32, I'm interested in the $25,000 upper + lower full-arch pathway. I'd like to know if I may be a candidate.")}`}>Ask about the $25,000 pathway <span>→</span></a></div>
-      </section>}
+    {conversion&&<section className="conversion-panel"><div><p className="kicker gold">{conversion.eyebrow}</p><h2>{conversion.headline}</h2><p>{conversion.body}</p></div><div className="conversion-actions"><div className="conversion-bullets">{conversion.bullets.map(bullet=><span key={bullet}>+ {bullet}</span>)}</div><a className="button button-gold" href={whatsapp}>Tell us about your case <span>→</span></a></div></section>}
 
-      <section className="treatment-intro-band"><p>Clear information. Real limitations. Individual planning.</p><strong>NO TWO PATIENTS ARE THE SAME.</strong></section>
-      <section className="treatment-sections">{data.sections.map((section, index) => <article className={`treatment-section ${index % 2 ? 'is-offset' : ''}`} key={section.title}><div className="treatment-section-index">{String(index + 1).padStart(2, '0')}</div><div className="treatment-section-copy"><p className="kicker gold">{section.eyebrow}</p><h2>{section.title}</h2>{section.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}{section.note && <div className="treatment-note">{section.note}</div>}</div></article>)}</section>
+    {data.slug==='all-on-4-tijuana'&&<section className="full-mouth-offer"><div className="full-mouth-price"><span>UPPER + LOWER</span><strong>$25,000 <small>USD</small></strong><em>For qualifying cases after clinical evaluation.</em></div><div><p className="kicker gold">A COMPLETE TWO-ARCH PATHWAY</p><h2>One plan from surgery to final teeth.</h2><p>For patients who need both arches rehabilitated, NONE32 can coordinate the upper and lower treatment as one planned pathway instead of a collection of disconnected appointments.</p><div className="offer-grid"><span><b>01</b> Surgery + provisional phase</span><span><b>02</b> Healing + final records</span><span><b>03</b> Final restoration delivery</span><span><b>+</b> Hotel stay coordinated for the planned visits</span></div><p className="offer-disclaimer">Implant number, immediate loading, grafting, restorative design and exact visit sequence depend on examination, imaging, stability and individual clinical needs. Your written treatment plan defines what is included in your case.</p><a className="button button-gold" href={`${whatsappBase}${encodeURIComponent("Hello NONE32, I'm interested in the $25,000 upper + lower full-arch pathway. I'd like to know if I may be a candidate.")}`}>Ask about the $25,000 pathway <span>→</span></a></div></section>}
 
-      <section className="treatment-reality"><div><p className="kicker gold">THE NONE32 STANDARD</p><h2>We get why you are asking.</h2></div><div><p>Patients should not have to search a Facebook group to discover the question they wish they had asked before treatment. Our goal is to explain the plan, alternatives, limitations and expected sequence before you commit.</p><p>That does not mean every outcome can be guaranteed. It means uncertainty should be discussed honestly and the treatment should be built around the person in front of us.</p><strong>WE GET IT. WE GOT YOU.</strong></div></section>
-
-      <section className="review-proof"><div><p className="kicker gold">REAL PATIENT EXPERIENCES</p><h2>Don't take the website's word for it.</h2><p>Read what patients say about their experience with NONE32 on Google. We keep the reviews there so you can see them in their original context rather than selected or rewritten here.</p></div><a className="button button-clear" href="https://www.google.com/maps/search/?api=1&query=NONE32+Tijuana" target="_blank" rel="noreferrer">Read NONE32 reviews on Google <span>↗</span></a></section>
-
-      <section className="treatment-sources" aria-labelledby="evidence-title"><div><p className="kicker gold">EVIDENCE-INFORMED PATIENT EDUCATION</p><h2 id="evidence-title">Read beyond the marketing.</h2><p>These pages are written for patient education and are not a diagnosis. Clinical decisions are made after an examination and appropriate records. We reference independent professional and scientific sources so you can continue reading.</p></div><div className="source-links">{data.sources.map((source) => <a href={source.href} key={source.href} target="_blank" rel="noreferrer"><span>{source.label}</span><b>↗</b></a>)}</div></section>
-      <section className="related-treatments"><p className="kicker gold">RELATED TREATMENTS</p><div className="related-treatment-grid">{related.map((item) => <Link href={`/treatments/${item.slug}`} key={item.slug}><span>{item.number}</span><strong>{item.navLabel}</strong><b>→</b></Link>)}</div></section>
-      <section className="treatment-cta"><div><p className="kicker gold">YOUR CASE IS THE NEXT STEP</p><h2>Information first.<br /><em>Then a plan.</em></h2></div><div><p>Send us your question, recent X-rays or treatment plan if you have them. We will tell you what information is still needed before a meaningful recommendation can be made.</p><a className="button button-gold" href={whatsapp}>Start on WhatsApp <span>→</span></a></div></section>
-      <SiteFooter />
-    </main>
-  );
+    <section className="treatment-intro-band"><p>Clear information. Real limitations. Individual planning.</p><strong>NO TWO PATIENTS ARE THE SAME.</strong></section>
+    <section className="treatment-sections">{data.sections.map((section,index)=><article className={`treatment-section ${index%2?'is-offset':''}`} key={section.title}><div className="treatment-section-index">{String(index+1).padStart(2,'0')}</div><div className="treatment-section-copy"><p className="kicker gold">{section.eyebrow}</p><h2>{section.title}</h2>{section.body.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{section.bullets&&<ul>{section.bullets.map(bullet=><li key={bullet}>{bullet}</li>)}</ul>}{section.note&&<div className="treatment-note">{section.note}</div>}</div></article>)}</section>
+    <section className="treatment-reality"><div><p className="kicker gold">THE NONE32 STANDARD</p><h2>We get why you are asking.</h2></div><div><p>Patients should not have to search a Facebook group to discover the question they wish they had asked before treatment. Our goal is to explain the plan, alternatives, limitations and expected sequence before you commit.</p><p>That does not mean every outcome can be guaranteed. It means uncertainty should be discussed honestly and the treatment should be built around the person in front of us.</p><strong>WE GET IT. WE GOT YOU.</strong></div></section>
+    <section className="review-proof"><div><p className="kicker gold">REAL PATIENT EXPERIENCES</p><h2>Don't take the website's word for it.</h2><p>Read what patients say about their experience with NONE32 on Google. We keep the reviews there so you can see them in their original context rather than selected or rewritten here.</p></div><a className="button button-clear" href="https://www.google.com/maps/search/?api=1&query=NONE32+Tijuana" target="_blank" rel="noreferrer">Read NONE32 reviews on Google <span>↗</span></a></section>
+    <section className="treatment-sources" aria-labelledby="evidence-title"><div><p className="kicker gold">EVIDENCE-INFORMED PATIENT EDUCATION</p><h2 id="evidence-title">Read beyond the marketing.</h2><p>These pages are written for patient education and are not a diagnosis. Clinical decisions are made after an examination and appropriate records. We reference independent professional and scientific sources so you can continue reading.</p></div><div className="source-links">{data.sources.map(source=><a href={source.href} key={source.href} target="_blank" rel="noreferrer"><span>{source.label}</span><b>↗</b></a>)}</div></section>
+    <section className="related-treatments"><p className="kicker gold">RELATED TREATMENTS</p><div className="related-treatment-grid">{related.map(item=><Link href={`/treatments/${item.slug}`} key={item.slug}><span>{item.number}</span><strong>{item.navLabel}</strong><b>→</b></Link>)}</div></section>
+    <section className="treatment-cta"><div><p className="kicker gold">YOUR CASE IS THE NEXT STEP</p><h2>Information first.<br /><em>Then a plan.</em></h2></div><div><p>Send us your question, recent X-rays or treatment plan if you have them. We will tell you what information is still needed before a meaningful recommendation can be made.</p><a className="button button-gold" href={whatsapp}>Start on WhatsApp <span>→</span></a></div></section><SiteFooter />
+  </main>;
 }
