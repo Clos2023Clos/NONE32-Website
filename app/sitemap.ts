@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${base}/es/privacy`,
+      url: `${base}/es/aviso-de-privacidad`,
       lastModified: now,
       changeFrequency: 'yearly' as const,
       priority: 0.3,
