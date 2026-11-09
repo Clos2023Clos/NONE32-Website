@@ -16,7 +16,7 @@ const navByLanguage = {
     ['Tratamientos', '/es#treatments'],
     ['Nuestra clínica', '/es#clinic'],
     ['Pacientes de EE.UU.', '/es#us-patients'],
-    ['Socios', '/partners'],
+    ['Socios', '/es/partners'],
     ['Contacto', '/es#contact']
   ]
 } as const;
@@ -31,7 +31,7 @@ export function SiteHeader({ language = 'en' }: { language?: Language }) {
 
   return (
     <header className="site-header">
-      <Link className="brand" href={language === 'es' ? '/es' : '/'} aria-label="NONE32 home">
+      <Link className="brand" href={language === 'es' ? '/es' : '/'} aria-label={language === 'es' ? 'Inicio de NONE32' : 'NONE32 home'}>
         <img src={logoUrl} alt="NONE32" width="160" height="56" />
       </Link>
       <nav className="desktop-nav" aria-label={language === 'es' ? 'Navegación principal' : 'Primary navigation'}>

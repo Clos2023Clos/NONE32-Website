@@ -15,9 +15,9 @@ export function SiteFooter({ language = 'en' }: { language?: Language }) {
         ['Tratamientos', '/es#treatments'],
         ['Nuestra clínica', '/es#clinic'],
         ['Pacientes de EE.UU.', '/es#us-patients'],
-        ['Socios', '/partners'],
+        ['Socios', '/es/partners'],
         ['Contacto', '/es#contact'],
-        ['Privacidad', '/privacy'],
+        ['Privacidad', '/es/aviso-de-privacidad'],
         ['Mapa del sitio', '/sitemap.xml']
       ] as const
     : [
