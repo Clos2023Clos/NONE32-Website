@@ -17,7 +17,7 @@ export function SiteFooter({ language = 'en' }: { language?: Language }) {
         ['Pacientes de EE.UU.', '/es#us-patients'],
         ['Socios', '/es/partners'],
         ['Contacto', '/es#contact'],
-        ['Privacidad', '/es/privacy'],
+        ['Privacidad', '/es/aviso-de-privacidad'],
         ['Mapa del sitio', '/sitemap.xml']
       ] as const
     : [
